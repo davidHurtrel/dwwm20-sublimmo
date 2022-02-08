@@ -57,6 +57,14 @@ git log
 ```
 composer install
 ```
+- créer la base de données (si cela n'a pas déjà été fait) :
+```
+php bin/console doctrine:database:create
+```
+- mettre à jour la base de données (créer, modifier ou supprimer les tables) :
+```
+php bin/console doctrine:migrations:migrate
+```
 
 ## SYMFONY SERVER
 
