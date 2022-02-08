@@ -86,3 +86,25 @@ composer require symfony/apache-pack
 ```
 php bin/console make:controller nom_du_controller
 ```
+
+## BASE DE DONNÉES
+
+- .env :
+```
+DATABASE_URL="mysql://utilisateur:mot_de_passe@127.0.0.1:3306/nom_de_la_base_de_donnees?serverVersion=5.7"
+```
+- créer la base de données :
+```
+php bin/console doctrine:database:create
+```
+- créer une entité (table) :
+```
+php bin/console make:entity nom_de_l_entite
+```
+- migration :
+```
+php bin/console make:migration
+```
+```
+php bin/console doctrine:migrations:migrate
+```
