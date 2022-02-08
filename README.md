@@ -58,10 +58,31 @@ git log
 composer install
 ```
 
+## SYMFONY SERVER
+
+- démarrer le serveur Symfony :
+```
+symfony server:start (Ctrl + C pour quitter)
+```
+- démarrer le serveur en arrière-plan
+```
+symfony server:start -d
+```
+- arrêter le serveur :
+```
+symfony server:stop
+```
+
 ## APACHE-PACK
 
 - suite d'outils pour Apache (barre de débug, routing, .htaccess)
 - dans le terminal :
 ```
 composer require symfony/apache-pack
+```
+
+## CONTROLLER
+
+```
+php bin/console make:controller nom_du_controller
 ```
