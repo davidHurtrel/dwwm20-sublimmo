@@ -57,3 +57,11 @@ git log
 ```
 composer install
 ```
+
+## APACHE-PACK
+
+- suite d'outils pour Apache (barre de débug, routing, .htaccess)
+- dans le terminal :
+```
+composer require symfony/apache-pack
+```
