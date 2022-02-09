@@ -23,6 +23,7 @@
                             <li class="list-group-item">Surface : {{ maison.surface }} m<sup>2</sup></li>
                             <li class="list-group-item">Pièces : {{ maison.rooms }} dont {{ maison.bedrooms }} chambre(s)</li>
                             <li class="list-group-item">Prix : {{ maison.price|number_format(0, ',', ' ') }} €</li>
+                            <li class="list-group-item">Commercial : {{ maison.commercial.name }}</li>
                         </ul>
                         <div class="card-body text-center">
                             <a href="#" class="btn btn-outline-secondary">Voir plus</a>
