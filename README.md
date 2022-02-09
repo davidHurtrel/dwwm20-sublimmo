@@ -116,3 +116,25 @@ php bin/console make:migration
 ```
 php bin/console doctrine:migrations:migrate
 ```
+
+## FIXTURES
+
+- installer le bundle :
+```
+composer require --dev orm-fixtures
+```
+- compléter le fichier srv/DataFixtures/AppFixtures.php
+- persist()
+- flush()
+- envoyer en base de données (en écrasant) :
+```
+php bin/console doctrine:fixtures:load
+```
+- envoyer en base de données (en ajoutant à la suite) :
+```
+php bin/console doctrine:fixtures:load --append
+```
+- bundle pour générer de fausses données :
+```
+composer require fakerphp/faker
+```
