@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}maisons{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - toutes les maisons</h1>
+    </header>
+
+    <main class="container-fluid p-5">
+
+        <div class="row">
+            {% for maison in maisons %}
+                <div class="col-3 p-3">
+                    <div class="card">
+                        <img src="{{ asset('img/' ~ maison.img1) }}" class="card-img-top" alt="photo principale {{ maison.title }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ maison.title }}</h5>
+                            <p class="card-text">{{ maison.description|u.truncate(90, '...', false) }}</p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Surface : {{ maison.surface }} m<sup>2</sup></li>
+                            <li class="list-group-item">Pièces : {{ maison.rooms }} dont {{ maison.bedrooms }} chambre(s)</li>
+                            <li class="list-group-item">Prix : {{ maison.price|number_format(0, ',', ' ') }} €</li>
+                        </ul>
+                        <div class="card-body text-center">
+                            <a href="#" class="btn btn-outline-secondary">Voir plus</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+    </main>
+
+{% endblock %}
