@@ -47,4 +47,30 @@ class MaisonRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    /**
+     * @return Maison[] Returns an array of 6 Maison objects ordered by latest insrted id
+     */
+    public function findLastSix()
+    {
+        return $this->createQueryBuilder('fls') // 'fls' est un alias
+            // ->andWhere('fls.surface > :val') // on cherche un id supérieur à une certaine valeur
+            // ->setParameter('val', 0) // on définit la valeur
+            ->orderBy('fls.id', 'DESC') // tri en ordre décroissant
+            ->setMaxResults(6) // sélectionne 6 résultats maximum
+            ->getQuery() // requête
+            ->getResult() // résultat(s)
+        ;
+    }
+
+    // /**
+    //  * @return Maison[] Returns an array of 6 Maison objects ordered by latest insrted id
+    //  */
+    // public function trouverDernierSix()
+    // {
+    //     $bdd = $this->getEntityManager()->getConnection();
+    //     $req = $bdd->prepare('SELECT * FROM maison ORDER BY id DESC LIMIT 6');
+    //     $req->executeQuery();
+    //     return $req->fetchAllAssociative();
+    // }
 }
