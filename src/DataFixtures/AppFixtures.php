@@ -2,7 +2,7 @@
 
 namespace App\DataFixtures;
 
-use Faker;
+use Faker\Factory;
 use App\Entity\Commercial;
 use App\Entity\Maison;
 use Doctrine\Persistence\ObjectManager;
@@ -19,7 +19,7 @@ class AppFixtures extends Fixture
         // $commercial->setName('David'); // définit le nom du commercial
         // $manager->persist($commercial); // précise au gestionnaire qu'on va vouloir envoyer un objet en base de données (le rend persistant / liste d'attente)
 
-        $faker = Faker\Factory::create();
+        $faker = Factory::create();
 
         for ($i = 1; $i <= 5; $i++) {
             $commercial = new Commercial();
