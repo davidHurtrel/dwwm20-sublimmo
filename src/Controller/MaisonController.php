@@ -17,4 +17,13 @@ class MaisonController extends AbstractController
             'maisons' => $houses,
         ]);
     }
+
+    #[Route('/admin/maisons', name: 'admin_maison_index')]
+    public function adminIndex(MaisonRepository $maisonRepository): Response
+    {
+        $houses = $maisonRepository->findAll();
+        return $this->render('admin/maisons.html.twig', [
+            'maisons' => $houses
+        ]);
+    }
 }

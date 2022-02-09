@@ -1,0 +1,41 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}maisons{% endblock %}
+
+{% block body %}
+    
+    <h1 class="pb-5">Liste des maisons</h1>
+
+    <table class="table text-center table-hover table-sm">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Titre</th>
+                <th>Prix</th>
+                <th>Image 1</th>
+                <th>Commercial</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for maison in maisons|reverse %}
+                <tr>
+                    <td class="align-middle">{{ loop.revindex }}</td>
+                    <td class="align-middle">{{ maison.title }}</td>
+                    <td class="align-middle">{{ maison.price|number_format(0, ',', ' ') }} €</td>
+                    <td class="align-middle"><img src="{{ asset('img/' ~ maison.img1) }}" alt="photo principale {{ maison.title }}"></td>
+                    <td class="align-middle">{{ maison.commercial.name }}</td>
+                    <td class="align-middle">
+                        <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end my-5">
+        <a href="#" class="btn btn-success">Ajouter une maison</a>
+    </div>
+
+{% endblock %}
