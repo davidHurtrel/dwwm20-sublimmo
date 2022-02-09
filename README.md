@@ -138,3 +138,15 @@ php bin/console doctrine:fixtures:load --append
 ```
 composer require fakerphp/faker
 ```
+
+## FORMULAIRE
+
+- créer le formulaire :
+```
+php bin/console make:form nom_du_formulaire
+```
+- mise en forme des formulaires avec un thème (config/packages/twig.yaml) :
+```
+twig:
+    form_themes: ['bootstrap_5_layout.html.twig']
+```

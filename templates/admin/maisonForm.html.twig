@@ -1,0 +1,50 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}maison{% endblock %}
+
+{% block body %}
+
+    {# {{ form(maisonForm) }} #}
+
+    {{ form_start(maisonForm) }}
+
+        <div class="col-12">
+            {{ form_row(maisonForm.title, {'label': 'Titre'}) }}
+        </div>
+
+        <div class="col-12">
+            {{ form_row(maisonForm.description, {'label': 'Description'}) }}
+        </div>
+
+        <div class="row">
+            <div class="col-3">
+                {{ form_row(maisonForm.surface, {'label': 'Surface (m2)'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(maisonForm.rooms, {'label': 'Pièces'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(maisonForm.bedrooms, {'label': 'Chambres'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(maisonForm.price, {'label': 'Prix (€)'}) }}
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(maisonForm.img1, {'label': 'Photo principale'}) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(maisonForm.img2, {'label': 'Photo secondaire'}) }}
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('admin_maison_index') }}" class="btn btn-danger m-3">Annuler</a>
+            <button class="btn btn-success m-3">Créer</button>
+        </div>
+        
+    {{ form_end(maisonForm) }}
+
+{% endblock %}
