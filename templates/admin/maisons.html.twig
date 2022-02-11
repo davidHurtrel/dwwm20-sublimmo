@@ -27,7 +27,7 @@
                     <td class="align-middle">{{ maison.commercial.name }}</td>
                     <td class="align-middle">
                         <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>
-                        <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="{{ path('maison_delete', {'id': maison.id}) }}" class="text-danger"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
             {% endfor %}

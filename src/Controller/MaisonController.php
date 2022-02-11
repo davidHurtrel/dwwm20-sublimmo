@@ -37,15 +37,12 @@ class MaisonController extends AbstractController
         $maison = new Maison(); // création d'une nouvelle maison
         $form = $this->createForm(MaisonType::class, $maison); // création d'un formulaire avec en paramètre la nouvelle maison
         $form->handleRequest($request); // gestionnaire de requêtes HTTP
-
         if ($form->isSubmitted() && $form->isValid()) { // vérifie si le formulaire a été envoyé et est valide
-
             $infoImg1 = $form['img1']->getData(); // récupère les informations de l'image 1
             $extensionImg1 = $infoImg1->guessExtension(); // récupère l'extension de l'image 1
             $nomImg1 = time() . '-1.' . $extensionImg1; // crée un nom unique pour l'image 1
             $infoImg1->move($this->getParameter('dossier_photos_maisons'), $nomImg1); // télécharge l'image dans le dossier adéquat
             $maison->setImg1($nomImg1); // définit le nom de l'iamge à mettre en bdd
-
             $infoImg2 = $form['img2']->getData();
             if ($infoImg2 !== null) {
                 $extensionImg2 = $infoImg2->guessExtension();
@@ -55,20 +52,39 @@ class MaisonController extends AbstractController
             } else {
                 $maison->setImg2(null);
             }
-
             $manager = $managerRegistry->getManager();
             $manager->persist($maison);
             $manager->flush();
-
             $this->addFlash('success', 'La maison a bien été ajoutée');
-
             return $this->redirectToRoute('admin_maison_index');
-        } else {
-            $this->addFlash('danger', 'Une erreur est survenue lors de l\'ajout de la maison');
         }
-
         return $this->render('admin/maisonForm.html.twig', [
             'maisonForm' => $form->createView()
         ]);
+    }
+
+    #[Route('/admin/maison/delete/{id}', name: 'maison_delete')]
+    public function delete(MaisonRepository $maisonRepository, int $id, ManagerRegistry $managerRegistry)
+    {
+        $maison = $maisonRepository->find($id); // récupère la maison grâce à son id
+        $nomImg1 = $maison->getImg1(); // récupère le nom de l'image 1
+        if ($nomImg1 !== null) { // vérifie qu'il y a bien un nom d'image (et donc une image à supprimer)
+            $cheminImg1 = $this->getParameter('dossier_photos_maisons') . '/' . $nomImg1; // reconstitue le chemin de l'image
+            if (file_exists($cheminImg1)) { // vérifie si le fichier existe
+                unlink($cheminImg1); // supprime le fichier
+            }
+        }
+        $nomImg2 = $maison->getImg2();
+        if ($nomImg2 !== null) {
+            $cheminImg2 = $this->getParameter('dossier_photos_maisons') . '/' . $nomImg2;
+            if (file_exists($cheminImg2)) {
+                unlink($cheminImg2);
+            }
+        }
+        $manager = $managerRegistry->getManager();
+        $manager->remove($maison);
+        $manager->flush();
+        $this->addFlash('success', 'La maison a bien été supprimée');
+        return $this->redirectToRoute('admin_maison_index');
     }
 }
