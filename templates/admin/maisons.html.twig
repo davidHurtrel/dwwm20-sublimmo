@@ -23,7 +23,7 @@
                     <td class="align-middle">{{ loop.revindex }}</td>
                     <td class="align-middle">{{ maison.title }}</td>
                     <td class="align-middle">{{ maison.price|number_format(0, ',', ' ') }} €</td>
-                    <td class="align-middle"><img src="{{ asset('img/' ~ maison.img1) }}" alt="photo principale {{ maison.title }}"></td>
+                    <td class="align-middle"><img src="{{ asset('img/maison/' ~ maison.img1) }}" alt="photo principale {{ maison.title }}"></td>
                     <td class="align-middle">{{ maison.commercial.name }}</td>
                     <td class="align-middle">
                         <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>

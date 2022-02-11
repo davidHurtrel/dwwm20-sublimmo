@@ -14,7 +14,7 @@
             {% for maison in maisons %}
                 <div class="col-3 p-3">
                     <div class="card">
-                        <img src="{{ asset('img/' ~ maison.img1) }}" class="card-img-top" alt="photo principale {{ maison.title }}">
+                        <img src="{{ asset('img/maison/' ~ maison.img1) }}" class="card-img-top" alt="photo principale {{ maison.title }}">
                         <div class="card-body">
                             <h5 class="card-title">{{ maison.title }}</h5>
                             <p class="card-text">{{ maison.description|u.truncate(90, '...', false) }}</p>
