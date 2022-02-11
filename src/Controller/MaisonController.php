@@ -60,8 +60,11 @@ class MaisonController extends AbstractController
             $manager->persist($maison);
             $manager->flush();
 
-            // message de succes
+            $this->addFlash('success', 'La maison a bien été ajoutée');
+
             return $this->redirectToRoute('admin_maison_index');
+        } else {
+            $this->addFlash('danger', 'Une erreur est survenue lors de l\'ajout de la maison');
         }
 
         return $this->render('admin/maisonForm.html.twig', [

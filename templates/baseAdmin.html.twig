@@ -50,6 +50,13 @@
     
                 <div class="col-11" id="content">
                     <div class="row p-5">
+                        {% for label, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
                         {% block body %}{% endblock %}
                     </div>
                 </div>
