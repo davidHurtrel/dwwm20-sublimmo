@@ -8,8 +8,13 @@
 
     {{ form_start(maisonForm) }}
 
-        <div class="col-12">
-            {{ form_row(maisonForm.title, {'label': 'Titre'}) }}
+        <div class="row">
+            <div class="col-9">
+                {{ form_row(maisonForm.title, {'label': 'Titre'}) }}
+            </div>
+            <div class="col-3">
+                {{ form_row(maisonForm.commercial, {'label': 'Commercial'})}}
+            </div>
         </div>
 
         <div class="col-12">
