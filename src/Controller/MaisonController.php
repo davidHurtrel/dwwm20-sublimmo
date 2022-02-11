@@ -63,6 +63,57 @@ class MaisonController extends AbstractController
         ]);
     }
 
+    #[Route('/admin/maison/update/{id}', name: 'maison_update')]
+    public function update(MaisonRepository $maisonRepository, int $id, Request $request, ManagerRegistry $managerRegistry)
+    {
+        $maison = $maisonRepository->find($id);
+        $form = $this->createForm(MaisonType::class, $maison);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $infoImg1 = $form['img1']->getData();
+            $nomOldImg1 = $maison->getImg1();
+            if ($infoImg1 !== null) {
+                $cheminOldImg1 = $this->getParameter('dossier_photos_maisons') . '/' . $nomOldImg1;
+                if (file_exists($cheminOldImg1)) {
+                    unlink($cheminOldImg1);
+                }
+                $extensionImg1 = $infoImg1->guessExtension();
+                $nomImg1 = time() . '-1.' . $extensionImg1;
+                $infoImg1->move($this->getParameter('dossier_photos_maisons'), $nomImg1);
+                $maison->setImg1($nomImg1);
+            } else {
+                $maison->setImg1($nomOldImg1);
+            }
+            $infoImg2 = $form['img2']->getData();
+            $nomOldImg2 = $maison->getImg2();
+            if ($infoImg2 !== null) {
+                if ($nomOldImg2 !== null) {
+                    $cheminOldImg2 = $this->getParameter('dossier_photos_maisons') . '/' . $nomOldImg2;
+                    if (file_exists($cheminOldImg2)) {
+                        unlink($cheminOldImg2);
+                    }
+                }
+                $extensionImg2 = $infoImg2->guessExtension();
+                $nomImg2 = time() . '-2.' . $extensionImg2;
+                $infoImg2->move($this->getParameter('dossier_photos_maisons'), $nomImg2);
+                $maison->setImg2($nomImg2);
+            } else {
+                $maison->setImg2($nomOldImg2);
+            }
+            $manager = $managerRegistry->getManager();
+            $manager->persist($maison);
+            $manager->flush();
+            $this->addFlash('success', 'La maison a bien été modifiée');
+            return $this->redirectToRoute('admin_maison_index');
+        }
+            
+        return $this->render('admin/maisonForm.html.twig', [
+            'maisonForm' => $form->createView(),
+            'maison' => $maison
+        ]);
+    }
+
     #[Route('/admin/maison/delete/{id}', name: 'maison_delete')]
     public function delete(MaisonRepository $maisonRepository, int $id, ManagerRegistry $managerRegistry)
     {
