@@ -241,7 +241,21 @@ php bin/console make:auth
 
 ## SÉCURITÉ - DROITS - ACCES - HIÉRARCHIE
 
-
+- dans config/packages/security.yaml, décommenter :
+```
+access_control:
+    - { path: ^/admin, roles: ROLE_ADMIN }
+    ...
+role_hierarchy:
+    ROLE_ADMIN: ROLE_USER
+    ROLE_SUPER_ADMIN: ROLE_ADMIN
+```
+- afficher du code selon un rôle :
+```
+{% if is_granted('LE_ROLE') %}
+    le_code_ici
+{% endif %}
+```
 
 ## EMAIL
 
@@ -269,10 +283,13 @@ php bin/console cache:clear
 
 ## RESTE À FAIRE
 
-- sécurisation de l'espace admin (register, login, roles)
 - affichage des commentaires sur la page /maison
 - formulaire de contact
 - ajout au panier
 - paiement avec Stripe
 - pages d'erreur
 - pagination
+
+## PISTES
+
+- installer verify-email-bundle avant registration-form
