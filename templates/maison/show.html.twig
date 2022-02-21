@@ -26,6 +26,16 @@
                     <img src="{{ asset('img/maison/' ~ maison.img2) }}" alt="photo secondaire {{ maison.title }}" class="w-50">
                 </div>
             {% endif %}
+            {% if maison.comments is not empty %}
+                <div class="col-8 offset-2">
+                    <h2 class="py-3">Commentaires</h2>
+                    <ul>
+                        {% for commentaire in maison.comments %}
+                            <li>- {{ commentaire.comment }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
         </div>
     </main>
     

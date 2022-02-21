@@ -283,7 +283,6 @@ php bin/console cache:clear
 
 ## RESTE À FAIRE
 
-- affichage des commentaires sur la page /maison
 - formulaire de contact
 - ajout au panier
 - paiement avec Stripe
