@@ -188,6 +188,59 @@ $this->addFlash('success', 'La maison a bien été ajoutée');
 {% endfor %}
 ```
 
+## REGISTER
+
+- créer l'entité User :
+```
+php bin/console make:user
+```
+- ajouter des champs à l'entité User :
+```
+php bin/console make:entity user
+```
+- migration
+- créer le formulaire d'inscription :
+```
+php bin/console make:registration-form
+```
+- installer le bundle de vérification d'email :
+```
+composer require symfonycasts/verify-email-bundle
+```
+- modifier la dernière redirection après la vérification de l'adresse mail (RegistrationController::verifyUserEmail())
+- gérer l'affichage des messages flash (register.html.twig, ...)
+- personnaliser le formulaire, le controller et les templates
+- migration pour générer la propriété User::isVerified
+- installer Rollerworks :
+```
+composer require rollerworks/password-strength-bundle
+```
+- dans le formulaire :
+```
+use Rollerworks\...\PasswordStrength
+```
+```
+new PasswordStrength
+```
+- y ajouter les contraintes souhaitées
+
+## EMAIL
+
+- installer le mailer :
+```
+composer require symfony/mailer
+```
+- installer le package tiers :
+```
+composer require symfony/google-mailer
+```
+- dans les paramètres du compte Google => Sécurité => Connexion à Google : activer la Validation en deux étapes pour pouvoir accéder aux Mots de passe des applications
+- créer un nouveau mot de passe d'application
+- .env :
+```
+MAILER_DSN=gmail://USERNAME:PASSWORD@default
+```
+
 ## COMMANDES IMPORTANTES
 
 - vider le cache :
@@ -198,7 +251,8 @@ php bin/console cache:clear
 ## RESTE À FAIRE
 
 - sécurisation de l'espace admin (register, login, roles)
-- envoi de mail avec formulaire de contact
+- affichage des commentaires sur la page /maison
+- formulaire de contact
 - ajout au panier
 - paiement avec Stripe
 - pages d'erreur
