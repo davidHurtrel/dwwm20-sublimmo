@@ -22,6 +22,14 @@ class MaisonController extends AbstractController
         ]);
     }
 
+    #[Route('/maison/{id}', name: 'maison_show')]
+    public function show(MaisonRepository $maisonRepository, int $id): Response
+    {
+        return $this->render('maison/show.html.twig', [
+            'maison' => $maisonRepository->find($id)
+        ]);
+    }
+
     #[Route('/admin/maisons', name: 'admin_maison_index')]
     public function adminIndex(MaisonRepository $maisonRepository): Response
     {

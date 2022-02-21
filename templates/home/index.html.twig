@@ -41,7 +41,7 @@
                                 <li class="list-group-item">Prix : {{ maison.price|number_format(0, ',', ' ') }} €</li>
                             </ul>
                             <div class="card-body text-center">
-                                <a href="#" class="btn btn-outline-secondary">Voir plus</a>
+                                <a href="{{ path('maison_show', {'id': maison.id }) }}" class="btn btn-outline-secondary">Voir plus</a>
                             </div>
                         </div>
                     </div>

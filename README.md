@@ -161,3 +161,15 @@ php bin/console make:form nom_du_formulaire
 twig:
     form_themes: ['bootstrap_5_layout.html.twig']
 ```
+
+## COMMANDES IMPORTANTES
+
+- vider le cache :
+```
+php bin/console cache:clear
+```
+
+
+
+- gestion des commentaires
+- envoi de mail avec formulaire de contact

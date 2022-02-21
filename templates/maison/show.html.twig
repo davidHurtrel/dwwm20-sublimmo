@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}maison{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - détail d'une maison</h1>
+    </header>
+
+    <main class="container-fluid">
+        <div class="row p-5">
+            <div class="col-8 offset-2">
+                <img src="{{ asset('img/maison/' ~ maison.img1) }}" alt="photo principale {{ maison.title }}" class="w-100">
+                <h2 class="py-3">{{ maison.title }}</h2>
+                <p>{{ maison.description }}</p>
+                <ul>
+                    <li>Surface : {{ maison.surface }} m<sup>2</sup></li>
+                    <li>Pièces : {{ maison.rooms }} - dont {{ maison.bedrooms }} chambre(s)</li>
+                    <li>Prix : {{ maison.price|number_format(0, ',', ' ') }} €</li>
+                </ul>
+            </div>
+            {% if maison.img2 is not null %}
+                <div class="col-8 offset-2">
+                    <h2 class="py-3">Autres photos</h2>
+                    <img src="{{ asset('img/maison/' ~ maison.img2) }}" alt="photo secondaire {{ maison.title }}" class="w-50">
+                </div>
+            {% endif %}
+        </div>
+    </main>
+    
+{% endblock %}
