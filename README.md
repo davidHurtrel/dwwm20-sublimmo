@@ -139,6 +139,17 @@ php bin/console doctrine:fixtures:load --append
 composer require fakerphp/faker
 ```
 
+## ROUTER
+
+- voir toutes les routes :
+```
+php bin/console debug:router
+```
+- vérifier si une route existe (et obtenir ses informations) :
+```
+php bin/console router:match /url_de_la_route
+```
+
 ## FORMULAIRE
 
 - créer le formulaire :
