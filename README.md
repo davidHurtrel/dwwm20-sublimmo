@@ -224,6 +224,25 @@ new PasswordStrength
 ```
 - y ajouter les contraintes souhaitées
 
+## LOGIN
+
+- créer "l'authentification" :
+```
+php bin/console make:auth
+```
+- 1
+- LoginFormAuthenticator
+- SecurityController
+- yes
+- pour se déconnecter :
+```
+<a href="{{ path('app_logout') }}"></a>
+```
+
+## SÉCURITÉ - DROITS - ACCES - HIÉRARCHIE
+
+
+
 ## EMAIL
 
 - installer le mailer :
