@@ -274,6 +274,12 @@ composer require symfony/google-mailer
 MAILER_DSN=gmail://USERNAME:PASSWORD@default
 ```
 
+## FORMULAIRE DE CONTACT
+
+- créer le formulaire de contact
+- créer le controller associé
+- afficher le formulaire dans une vue (template)
+
 ## COMMANDES IMPORTANTES
 
 - vider le cache :
@@ -283,7 +289,7 @@ php bin/console cache:clear
 
 ## RESTE À FAIRE
 
-- formulaire de contact
+- formulaire de contact (typer les données du form + traitement post-envoi)
 - ajout au panier
 - paiement avec Stripe
 - pages d'erreur

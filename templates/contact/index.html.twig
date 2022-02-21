@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}contact{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - contact</h1>
+    </header>
+
+    <main class="container-fluid">
+                
+        {{ form_start(contactForm) }}
+
+            <div class="row my-5">
+
+                <div class="col-3 offset-3 mb-3">
+                    {{ form_row(contactForm.prenom) }}
+                </div>
+                
+                <div class="col-3 mb-3">
+                    {{ form_row(contactForm.nom) }}
+                </div>
+
+                <div class="col-6 offset-3 mb-3">
+                    {{ form_row(contactForm.email) }}
+                </div>
+
+                <div class="col-6 offset-3 mb-3">
+                    {{ form_row(contactForm.objet) }}
+                </div>
+
+                <div class="col-6 offset-3 mb-3">
+                    {{ form_row(contactForm.message) }}
+                </div>
+
+                <div class="col-6 offset-3 mb-3">
+                    {{ form_row(contactForm.fichier) }}
+                </div>
+
+                <div class="col-6 offset-3 text-end">
+                    <input type="submit" class="btn btn-primary" value="Envoyer">
+                </div>
+
+            </div>
+
+        {{ form_end(contactForm) }}
+
+    </main>
+
+{% endblock %}
