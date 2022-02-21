@@ -65,6 +65,10 @@ php bin/console doctrine:database:create
 ```
 php bin/console doctrine:migrations:migrate
 ```
+- importer les "fausses" données (s'il y en a) :
+```
+php bin/console doctrine:fixtures:load
+```
 
 ## SYMFONY SERVER
 
@@ -167,6 +171,23 @@ twig:
     form_themes: ['bootstrap_5_layout.html.twig']
 ```
 
+## MESSAGES FLASH
+
+- dans un controller :
+```PHP
+$this->addFlash('success', 'La maison a bien été ajoutée');
+```
+- à l'endroit où l'on veut afficher les messages (template) :
+```PHP
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endfor %}
+```
+
 ## COMMANDES IMPORTANTES
 
 - vider le cache :
@@ -174,7 +195,11 @@ twig:
 php bin/console cache:clear
 ```
 
+## RESTE À FAIRE
 
-
-- gestion des commentaires
+- sécurisation de l'espace admin (register, login, roles)
 - envoi de mail avec formulaire de contact
+- ajout au panier
+- paiement avec Stripe
+- pages d'erreur
+- pagination
