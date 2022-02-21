@@ -1,26 +1,32 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Comment{% endblock %}
+{% block title %}commentaire{% endblock %}
 
 {% block body %}
-    <h1>Comment</h1>
+
+    <h1 class="pb-5">Commentaire</h1>
 
     <table class="table">
         <tbody>
             <tr>
-                <th>Id</th>
+                <th>ID</th>
                 <td>{{ comment.id }}</td>
             </tr>
             <tr>
-                <th>Comment</th>
+                <th>Commentaire</th>
                 <td>{{ comment.comment }}</td>
+            </tr>
+            <tr>
+                <th>Maison</th>
+                <td>{{ comment.maison.title }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('comment_index') }}">back to list</a>
+    <div class="col-12 d-flex justify-content-end">
+        <a href="{{ path('comment_admin_index') }}" class="btn btn-warning me-3">Retour</a>
+        <a href="{{ path('comment_edit', {'id': comment.id}) }}" class="btn btn-primary me-3">Modifier</a>
+        {{ include('comment/_delete_form.html.twig') }}
+    </div>
 
-    <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
-
-    {{ include('comment/_delete_form.html.twig') }}
 {% endblock %}

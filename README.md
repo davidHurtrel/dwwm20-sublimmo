@@ -91,8 +91,13 @@ composer require symfony/apache-pack
 
 ## CONTROLLER
 
+- créer un controller (et le template asscoié) :
 ```
 php bin/console make:controller nom_du_controller
+```
+- générer un crud :
+```
+php bin/console make:crud nom_de_l_entite
 ```
 
 ## BASE DE DONNÉES

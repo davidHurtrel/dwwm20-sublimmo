@@ -3,35 +3,38 @@
 {% block title %}commentaires{% endblock %}
 
 {% block body %}
-
-    <h1>Liste des commentaires</h1>
+    <h1 class="pb-5">Liste des commentaires</h1>
 
     <table class="table">
         <thead>
-            <tr>
+            <tr class="text-center">
                 <th>N°</th>
                 <th>Commentaire</th>
+                <th>Maison</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-        {% for comment in comments %}
+        {% for comment in commentaires %}
             <tr>
                 <td>{{ loop.revindex }}</td>
                 <td>{{ comment.comment }}</td>
-                <td>
-                    <a href="{{ path('comment_show', {'id': comment.id}) }}">show</a>
-                    <a href="{{ path('comment_edit', {'id': comment.id}) }}">edit</a>
+                <td>{{ comment.maison.title }}</td>
+                <td class="text-center">
+                    <a href="{{ path('comment_show', {'id': comment.id}) }}"><i class="fas fa-eye text-danger"></i></a>
+                    <a href="{{ path('comment_edit', {'id': comment.id}) }}"><i class="fas fa-pen-square text-primary"></i></a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="3">aucun commentaire trouvé</td>
+                <td colspan="4">Aucun commentaire trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('comment_new') }}">Nouveau</a>
+    <div class="col-12 text-end">
+        <a href="{{ path('comment_new') }}" class="btn btn-primary">Nouveau</a>
+    </div>
 
 {% endblock %}

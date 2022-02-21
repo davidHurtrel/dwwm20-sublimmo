@@ -1,13 +1,11 @@
 {% extends 'baseAdmin.html.twig' %}
 
-{% block title %}Edit Comment{% endblock %}
+{% block title %}modifier commentaire{% endblock %}
 
 {% block body %}
-    <h1>Edit Comment</h1>
 
-    {{ include('comment/_form.html.twig', {'button_label': 'Update'}) }}
+    <h1>Modifier le commentaire</h1>
 
-    <a href="{{ path('comment_index') }}">back to list</a>
+    {{ include('comment/_form.html.twig', {'button_label': 'Valider'}) }}
 
-    {{ include('comment/_delete_form.html.twig') }}
 {% endblock %}
