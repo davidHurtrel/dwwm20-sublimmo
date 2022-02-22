@@ -273,6 +273,21 @@ composer require symfony/google-mailer
 ```
 MAILER_DSN=gmail://USERNAME:PASSWORD@default
 ```
+- voir les mails dans la toolbar (config/packages/dev/web_profiler.yaml) :
+```YAML
+web_profiler:
+    ...
+    intercept_redirects: true # intercepte les redirections
+```
+(un message apparaît ensuite dans la toolbar)
+- config/packages/mailer.yaml :
+```YAML
+framework:
+    mailer:
+        dsn: 'null://null' # désactive l'envoi de mail
+        envelope:
+            recipients: ['david.hurtrel@gmail.com'] # envoie tous les mails à cette adresse
+```
 
 ## FORMULAIRE DE CONTACT
 
@@ -285,6 +300,10 @@ MAILER_DSN=gmail://USERNAME:PASSWORD@default
 - vider le cache :
 ```
 php bin/console cache:clear
+```
+- envoyer les messages (mails, ...) :
+```
+php bin/console messenger:consume async
 ```
 
 ## RESTE À FAIRE
