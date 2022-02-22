@@ -296,6 +296,42 @@ framework:
 - afficher le formulaire dans une vue (template)
 - créer le template de mail (contact/contact_email.html.twig)
 
+## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
+
+- composer.json :
+    - remplacer 6.0 par 5.4
+    - supprimer symfony/doctrine-messenger
+    - supprimer symfony/messenger
+- supprimer les dossiers var et vendor
+- supprimer config/packages/messenger.yaml
+- .env :
+    - supprimer symfony/webapp-meta
+    - supprimer symfony/messenger
+- composer update
+- ajouter les méthodes suivantes dans src/Entity/User.php :
+```PHP
+/**
+ * A visual identifier that represents this user.
+ *
+ * @see UserInterface
+ */
+public function getUsername(): string
+{
+    return (string) $this->email;
+}
+
+/**
+* Returning a salt is only needed, if you are not using a modern
+* hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+*
+* @see UserInterface
+*/
+public function getSalt(): ?string
+{
+    return null;
+}
+```
+
 ## COMMANDES IMPORTANTES
 
 - vider le cache :
