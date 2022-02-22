@@ -9,6 +9,18 @@
     </header>
 
     <main class="container-fluid">
+
+        <div class="row">
+            <div class="col-6 offset-3">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 my-5 rounded">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
                 
         {{ form_start(contactForm) }}
 

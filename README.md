@@ -294,6 +294,7 @@ framework:
 - créer le formulaire de contact
 - créer le controller associé
 - afficher le formulaire dans une vue (template)
+- créer le template de mail (contact/contact_email.html.twig)
 
 ## COMMANDES IMPORTANTES
 
@@ -308,7 +309,6 @@ php bin/console messenger:consume async
 
 ## RESTE À FAIRE
 
-- formulaire de contact (typer les données du form + traitement post-envoi)
 - ajout au panier
 - paiement avec Stripe
 - pages d'erreur
