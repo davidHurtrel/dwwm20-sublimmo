@@ -73,4 +73,24 @@ class MaisonRepository extends ServiceEntityRepository
     //     $req->executeQuery();
     //     return $req->fetchAllAssociative();
     // }
+
+    /**
+     * @return Maison[] Returns an array of 6 Maison objects ordered by latest insrted id
+     */
+    public function search(int $rooms, int $bedrooms, int $surface, int $budget)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.rooms >= :rooms')
+            ->andWhere('s.bedrooms >= :bedrooms')
+            ->andWhere('s.surface >= :surface')
+            ->andWhere('s.price <= :budget')
+            ->setParameter('rooms', $rooms)
+            ->setParameter('bedrooms', $bedrooms)
+            ->setParameter('surface', $surface)
+            ->setParameter('budget', $budget)
+            ->orderBy('s.price', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }

@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}recherche{% endblock %}
+
+{% block body %}
+
+    <header>
+        <h1>Rechercer</h1>
+    </header>
+
+    <main>
+
+        <h2>Formulaire</h2>
+        {{ form(searchForm) }}
+
+        {% if maisons %}
+            <h2>Résultats</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>NOM</th>
+                        <th>PIECES</th>
+                        <th>CHAMBRES</th>
+                        <th>SURFACE</th>
+                        <th>BUDGET</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for maison in maisons %}
+                        <tr>
+                            <td>{{ maison.title }}</td>
+                            <td>{{ maison.rooms }}</td>
+                            <td>{{ maison.bedrooms }}</td>
+                            <td>{{ maison.surface }}</td>
+                            <td>{{ maison.price }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+    </main>
+    
+{% endblock %}

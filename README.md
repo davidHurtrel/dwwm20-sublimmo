@@ -307,7 +307,6 @@ framework:
 - .env :
     - supprimer symfony/webapp-meta
     - supprimer symfony/messenger
-- composer update
 - ajouter les méthodes suivantes dans src/Entity/User.php :
 ```PHP
 /**
@@ -331,6 +330,7 @@ public function getSalt(): ?string
     return null;
 }
 ```
+- composer update
 
 ## COMMANDES IMPORTANTES
 

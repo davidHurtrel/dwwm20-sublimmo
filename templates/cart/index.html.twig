@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}panier{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - panier</h1>
+    </header>
+
+    <main class="container-fluid p-5">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h2 class="mb-5">Votre panier</h2>
+                {% if cart is not empty %}
+                    <table class="table align-middle">
+                        <thead class="text-center table-secondary">
+                            <tr class="fw-bold">
+                                <th>DESIGNATION</th>
+                                <th>PRIX UNITAIRE</th>
+                                <th>QUANTITE</th>
+                                <th>SOUS-TOTAL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for line in cart %}
+                                <tr>
+                                    <td>
+                                        <a href="{{ path('maison_show', {'id': line.product.id}) }}">
+                                            <img src="{{ asset('img/maison/' ~ line.product.img1) }}" alt="photo principale {{ line.product.title }}" class="me-3">
+                                            {{ line.product.title }}
+                                        </a>
+                                        (<a href="{{ path('cart_delete', {'id': line.product.id}) }}" class="text-danger">supprimer</a>)
+                                    </td>
+                                    <td class="text-end">{{ line.product.price|number_format(0, ',', ' ') }} €</td>
+                                    <td class="text-center">
+                                        <a href="{{ path('cart_remove', {'id': line.product.id}) }}"><i class="fas fa-minus-square text-danger"></i></a>
+                                        <span class="mx-2">{{ line.quantity }}</span>
+                                        <a href="{{ path('cart_add', {'id': line.product.id}) }}"><i class="fas fa-plus-square text-success"></i></a>
+                                    </td>
+                                    <td class="text-end">{{ (line.product.price * line.quantity)|number_format(0, ',', ' ') }} €</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                        <tfoot class="table-secondary text-end">
+                            <tr class="fw-bold">
+                                <th colspan="3">TOTAL :</th>
+                                <th>{{ total|number_format(0, ',', ' ') }} €</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                    <div class="text-end mt-5">
+                        <a href="{{ path('cart_clear') }}" class="btn btn-outline-danger me-3">Vider le panier</a>
+                        <a href="#" class="btn btn-success">Valider le panier</a>
+                    </div>
+                {% else %}
+                    <p class="text-center my-5">Votre panier est vide : <a href="{{ path('maison_index') }}" class="text-primary">parcourir les produits</a></p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="row my-5">
+            <div class="col-8 offset-2">
+                <div class="row">
+                    <h2 class="mb-5">Dernières maisons</h2>
+                    {% for product in latestProducts %}
+                        <div class="col-4">
+                            <div class="card">
+                                <img src="{{ asset('img/maison/' ~ product.img1) }}" alt="photo principale {{ product.title }}" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ product.title }}</h5>
+                                    <p class="card-text">{{ product.description|u.truncate(60, '...') }}</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">Surface : {{ product.surface }} m<sup>2</sup></li>
+                                    <li class="list-group-item">Pièces : {{ product.rooms }} dont {{ product.bedrooms }} chambre(s)</li>
+                                    <li class="list-group-item">Prix : {{ product.price|number_format(0, ',', ' ') }} €</li>
+                                </ul>
+                                <div class="card-body text-end">
+                                    <a href="{{ path('maison_show', {'id': product.id}) }}" class="btn btn-outline-secondary btn-sm">Voir</a>
+                                    <a href="{{ path('cart_add', {'id': product.id}) }}" class="btn btn-success btn-sm">Ajouter au panier</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

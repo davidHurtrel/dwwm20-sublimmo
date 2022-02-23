@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Maison;
+use App\Form\MaisonSearchType;
 use App\Form\MaisonType;
 use App\Repository\MaisonRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -145,5 +146,28 @@ class MaisonController extends AbstractController
         $manager->flush();
         $this->addFlash('success', 'La maison a bien été supprimée');
         return $this->redirectToRoute('admin_maison_index');
+    }
+
+    #[Route('/search', name: 'maison_search')]
+    public function search(Request $request, MaisonRepository $maisonRepository): Response
+    {
+        $form = $this->createForm(MaisonSearchType::class);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $rooms = $form['pieces']->getData();
+            $bedrooms = $form['chambres']->getData();
+            $surface = $form['surface']->getData();
+            $budget = $form['budget']->getData();
+            $houses = $maisonRepository->search($rooms, $bedrooms, $surface, $budget);
+            return $this->render('maison/search.html.twig', [
+                'searchForm' => $form->createView(),
+                'maisons' => $houses
+            ]);
+        }
+
+        return $this->render('maison/search.html.twig', [
+            'searchForm' => $form->createView()
+        ]);
     }
 }
