@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}paiement refusé{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - paiement refusé</h1>
+    </header>
+
+    <main class="container-fluid py-5">
+
+        <div class="row">
+            <div class="col-6 offset-3">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="flash-{{ label }} bg-{{ label }} text-light p-3 mb-5 rounded">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 offset-3">
+                <h2 class="mb-5">Paiement refusé</h2>
+                <p>Le paiement a été refusé. Merci de réessayer ultérieurement.</p>
+                <p>Si le problème persiste, merci de contacter un administrateur du site via le <a href="{{ path('contact') }}" class="text-primary">formulaire de contact</a>.</p>
+            </div>
+        </div>
+
+    </main>
+
+{% endblock %}

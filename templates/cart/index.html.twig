@@ -51,7 +51,7 @@
                     </table>
                     <div class="text-end mt-5">
                         <a href="{{ path('cart_clear') }}" class="btn btn-outline-danger me-3">Vider le panier</a>
-                        <a href="#" class="btn btn-success">Valider le panier</a>
+                        <a href="{{ path('payment') }}" class="btn btn-success">Valider le panier</a>
                     </div>
                 {% else %}
                     <p class="text-center my-5">Votre panier est vide : <a href="{{ path('maison_index') }}" class="text-primary">parcourir les produits</a></p>

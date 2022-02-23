@@ -296,6 +296,20 @@ framework:
 - afficher le formulaire dans une vue (template)
 - créer le template de mail (contact/contact_email.html.twig)
 
+## PAIEMENT STRIPE
+
+- créer un controller (et la vue associée)
+- ajouter le script à la page de paiement (front) :
+```HTML
+<script src="https://js.stripe.com/v3/"></script>
+```
+- installer le bundle (back) :
+```
+composer require stripe/stripe-php
+```
+- ajouter le lien sur la page panier
+- 
+
 ## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
 
 - composer.json :
