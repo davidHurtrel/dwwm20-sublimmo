@@ -15,7 +15,7 @@
                 <h2>Formulaire</h2>
                 {{ form(searchForm) }}
 
-                {% if maisons %}
+                {% if maisons is defined %}
                     <h2>Résultats</h2>
                     <table class="table">
                         <thead>
@@ -39,6 +39,8 @@
                             {% endfor %}
                         </tbody>
                     </table>
+                {% else %}
+                    <p>Aucun résultat de recherche</p>
                 {% endif %}
 
             </div>
