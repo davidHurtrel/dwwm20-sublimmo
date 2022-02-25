@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}visiter{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - visiter</h1>
+    </header>
+
+    <main class="container-fluid">
+        <div class="row p-5">
+            <div class="col-8 offset-2">
+                <h2 class="mb-5">Bien choisir sa journée pour visiter un bien immobilier</h2>
+                <p>La météo est un facteur important lors de la visite d'un bien immobilier. En effet, si le soleil est présent, vous aurez plus de facilité à vous projeter dans un logement. Mais tout le monde le sait, après le calme vient la tempête. Il est alors intéressant de visiter également un jour de pluie (ou en soirée, lorsque le soleil est couché) afin de bien réaliser si le bien est fait pour vous.</p>
+                <h2 class="mb-5">Formulaire</h2>
+                {{ form(visiteForm) }}
+                {% if weatherData is defined %}
+                    <h2 class="mb-5">Météo du jour à {{ weatherData.name|capitalize }}</h2>
+                    <ul>
+                        <li>{{ weatherData.weather.0.description|capitalize }} (nuages : {{ weatherData.clouds.all }} %)</li>
+                        <li>Température : {{ weatherData.main.temp|number_format(1, ',') }} °C (ressenti {{ weatherData.main.feels_like|number_format(1, ',') }} °C)</li>
+                        <li>Vent : {{ weatherData.wind.speed }} m.s<sup>-1</sup> ({{ weatherData.wind.deg }} °)</li>
+                        <li>Pression atmosphérique : {{ weatherData.main.pressure }} hPa</li>
+                        <li>Humidité : {{ weatherData.main.humidity }} %</li>
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

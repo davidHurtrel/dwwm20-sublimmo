@@ -340,6 +340,14 @@ php bin/console debug:autowiring --all markdown
 - créer le dossier Service (si pas déjà existant)
 - y créer le fichier CartService.php
 
+## API - OPEN WEATHER MAP
+
+- créer un compte sur le site https://openweathermap.org/
+- créer une clé API (préciser un nom)
+- endpoint = URL, emplacement à partir duquel les applications peuvent accéder aux ressources dont elles ont besoin
+- tester un appel dnas la barre d'url
+- créer le service WeatherService
+
 ## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
 
 - composer.json :
