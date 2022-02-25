@@ -329,6 +329,16 @@ composer require cebe/markdown
 services:
     cebe\markdown\GithubMarkdown: ~
 ```
+- rechercher un service particulier disponible avec l'autowiring :
+```
+php bin/console debug:autowiring --all markdown
+```
+
+## SERVICES
+
+- services = objets qui font une tâche, des outils (réutilisables)
+- créer le dossier Service (si pas déjà existant)
+- y créer le fichier CartService.php
 
 ## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
 

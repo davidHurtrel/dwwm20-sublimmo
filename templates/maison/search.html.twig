@@ -8,42 +8,55 @@
         <h1>SUBL'IMMO - toutes les maisons</h1>
     </header>
 
-    <main class="container-fluid">
-        <div class="p-5">
-            <div class="col-8 p-5">
+    <main class="container-fluid p-5">
+        <div class="col-8 offset-2">
 
-                <h2>Formulaire</h2>
-                {{ form(searchForm) }}
+            <h2>Formulaire</h2>
+            {{ form_start(searchForm) }}
+                <div class="row">
+                    <div class="col-6">
+                        {{ form_row(searchForm.pieces) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(searchForm.chambres) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(searchForm.surface) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(searchForm.budget) }}
+                    </div>
+                </div>
+            {{ form_end(searchForm) }}
 
-                {% if maisons is defined %}
-                    <h2>Résultats</h2>
-                    <table class="table">
-                        <thead>
+            <h2>Résultats</h2>
+            {% if maisons is defined %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>NOM</th>
+                            <th>PIECES</th>
+                            <th>CHAMBRES</th>
+                            <th>SURFACE</th>
+                            <th>BUDGET</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for maison in maisons %}
                             <tr>
-                                <th>NOM</th>
-                                <th>PIECES</th>
-                                <th>CHAMBRES</th>
-                                <th>SURFACE</th>
-                                <th>BUDGET</th>
+                                <td>{{ maison.title }}</td>
+                                <td>{{ maison.rooms }}</td>
+                                <td>{{ maison.bedrooms }}</td>
+                                <td>{{ maison.surface }}</td>
+                                <td>{{ maison.price }}</td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            {% for maison in maisons %}
-                                <tr>
-                                    <td>{{ maison.title }}</td>
-                                    <td>{{ maison.rooms }}</td>
-                                    <td>{{ maison.bedrooms }}</td>
-                                    <td>{{ maison.surface }}</td>
-                                    <td>{{ maison.price }}</td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-                    <p>Aucun résultat de recherche</p>
-                {% endif %}
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucun résultat de recherche</p>
+            {% endif %}
 
-            </div>
         </div>
     </main>
     
