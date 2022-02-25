@@ -390,8 +390,11 @@ php bin/console messenger:consume async
 
 ## RESTE À FAIRE
 
+- consommer une API
+- embedding services
 - pages d'erreur
 - pagination
+- utiliser CartService partout dans PaymentController
 
 ## PISTES
 

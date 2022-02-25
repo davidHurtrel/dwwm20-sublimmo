@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Stripe\StripeClient;
 use App\Repository\MaisonRepository;
+use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -48,17 +49,28 @@ class PaymentController extends AbstractController
         ]);
     }
 
+    // #[Route('/payment/success', name: 'payment_success')]
+    // public function success(Request $request, SessionInterface $sessionInterface): Response
+    // {
+    //     if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
+    //         return $this->redirectToRoute('cart_index');
+    //     }
+    //     // générer une facture
+    //     // envoyer un mail de confirmation de commande avec la facture en pièce-jointe
+    //     $sessionInterface->remove('cart'); // vide le panier
+    //     return $this->render('payment/success.html.twig');
+    // }
+
     #[Route('/payment/success', name: 'payment_success')]
-    public function success(Request $request, SessionInterface $sessionInterface): Response
+    public function success(Request $request, CartService $cartService): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
             return $this->redirectToRoute('cart_index');
         }
-        // générer une facture
-        // envoyer un mail de confirmation de commande avec la facture en pièce-jointe
-        $sessionInterface->remove('cart'); // vide le panier
+        $cartService->clear();
         return $this->render('payment/success.html.twig');
     }
+
 
     #[Route('/payment/cancel', name: 'payment_cancel')]
     public function cancel(Request $request): Response
