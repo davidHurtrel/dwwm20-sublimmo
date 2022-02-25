@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}readme{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - toutes les maisons</h1>
+    </header>
+
+    <main class="container-fluid">
+        <div class="row p-5">
+            <div class="col-8 offset-2">
+                {{ content|raw }}
+            </div>
+        </div>
+    </main>
+
+{% endblock %}

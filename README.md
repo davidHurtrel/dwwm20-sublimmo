@@ -308,7 +308,27 @@ framework:
 composer require stripe/stripe-php
 ```
 - ajouter le lien sur la page panier
-- 
+
+## AUTOWIRING
+
+- voir tous les services :
+```
+php bin/console debug:autowiring
+```
+- en voir plus (en ahut de liste : nos controllers, fixtures, forms, repositories en font partie) :
+```
+php bin/console debug:autowiring --all
+```
+- exemple :
+```
+composer require cebe/markdown
+```
+- la classe se trouve dans vendor
+- services.yaml :
+```
+services:
+    cebe\markdown\GithubMarkdown: ~
+```
 
 ## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
 
@@ -332,7 +352,8 @@ public function getUsername(): string
 {
     return (string) $this->email;
 }
-
+```
+```PHP
 /**
 * Returning a salt is only needed, if you are not using a modern
 * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
@@ -359,8 +380,6 @@ php bin/console messenger:consume async
 
 ## RESTE À FAIRE
 
-- ajout au panier
-- paiement avec Stripe
 - pages d'erreur
 - pagination
 

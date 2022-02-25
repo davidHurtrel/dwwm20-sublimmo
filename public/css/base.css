@@ -13,6 +13,7 @@
         --color-black: #000000;
         --color-grey: #888888;
         --color-white: #FFFFFF;
+        --color-pink: #D63384;
     }
 
     * {
@@ -29,6 +30,16 @@
 
     table img {
         width: 75px;
+    }
+
+    code {
+        display: block;
+        background-color: var(--color-black);
+        color: var(--color-pink) !important;
+        padding: 0.75em;
+        margin: 0.5em 0;
+        border: 1px solid var(--color-grey);
+        border-radius: 0.5em;
     }
 
 /* **************************************** BASE - FOOTER **************************************** */
@@ -61,3 +72,17 @@
         #home-header h2 {
             top: 92%;
         }
+
+/* **************************************** MAIN **************************************** */
+
+    main h1 {
+        margin-bottom: 1em;
+    }
+
+    main h2 {
+        margin: 1em 0;
+    }
+
+    main ul li {
+        list-style-type: disc;
+    }
