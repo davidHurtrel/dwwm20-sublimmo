@@ -26,8 +26,12 @@ class MaisonController extends AbstractController
     #[Route('/maison/{id}', name: 'maison_show')]
     public function show(MaisonRepository $maisonRepository, int $id): Response
     {
+        $maison = $maisonRepository->find($id);
+        if (empty($maison)) {
+            return $this->render('bundles/TwigBundle/Exception/error404.html.twig');
+        }
         return $this->render('maison/show.html.twig', [
-            'maison' => $maisonRepository->find($id)
+            'maison' => $maison
         ]);
     }
 

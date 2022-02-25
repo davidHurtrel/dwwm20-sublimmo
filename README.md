@@ -348,6 +348,27 @@ php bin/console debug:autowiring --all markdown
 - tester un appel dnas la barre d'url
 - créer le service WeatherService
 
+## PAGES D'ERREUR
+
+- si nécessaire :
+```
+composer require symfony/twig-pack
+```
+- créer l'arborescence templates/bundles/TwigBundle/Exception/
+- y créer les fichiers avec l'écriture errorXXX.html.twig (où XXX est le numéro d'erreur)
+- error.html.twig pour toutes les autres
+
+- 1xx : information
+- 2xx : succès
+- 3xx : redirection
+- 4xx : client web
+    - 401 : accès refusé
+    - 403 : accès interdit
+    - 404 : non trouvé
+- 5xx : serveur
+    - 500 : erreur interne
+    - 503 : service indisponible
+
 ## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
 
 - composer.json :
@@ -398,9 +419,8 @@ php bin/console messenger:consume async
 
 ## RESTE À FAIRE
 
-- consommer une API
-- embedding services
 - pages d'erreur
+- embedding services
 - pagination
 - utiliser CartService partout dans PaymentController
 

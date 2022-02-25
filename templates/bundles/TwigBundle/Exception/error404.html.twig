@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}visiter{% endblock %}
+
+{% block body %}
+
+    <header class="container-fluid p-5 text-center bg-light">
+        <h1>SUBL'IMMO - erreur 404</h1>
+    </header>
+
+    <main class="container-fluid">
+        <div class="row p-5">
+            <div class="col-8 offset-2">
+                <h2 class="mb-5">La page demandée n'existe pas (ou plus)</h2>
+                <p><a href="{{ path('home') }}" class="text-primary">Retourner à l'accueil</a></p>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
