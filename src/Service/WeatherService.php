@@ -9,7 +9,7 @@ class WeatherService
     private $httpClientInterface;
     private $lang = 'fr';
     private $units = 'metric';
-    private $appid = '364ed6ca8cb49f77aeecb0be9aa479a5';
+    private $appid = '';
 
     public function __construct(HttpClientInterface $httpClientInterface)
     {
