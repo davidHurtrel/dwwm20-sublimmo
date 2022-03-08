@@ -2,18 +2,22 @@
 
 namespace App\Service;
 
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 class WeatherService
 {
     private $httpClientInterface;
-    private $lang = 'fr';
-    private $units = 'metric';
-    private $appid = '';
+    private $lang;
+    private $units;
+    private $appid;
 
     public function __construct(HttpClientInterface $httpClientInterface)
     {
         $this->httpClientInterface = $httpClientInterface;
+        $this->lang = 'fr';
+        $this->units = 'metric';
+        $this->appid = $_ENV['OPENWEATHER_PK'];
     }
 
     /**
