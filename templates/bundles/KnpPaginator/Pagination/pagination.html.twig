@@ -1,0 +1,14 @@
+
+{% if pageCount > 1 %}
+    {% if previous is defined %}
+        <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" class="btn btn-sm btn-secondary mx-3"><</a>
+    {% else %}
+        <a class="btn btn-sm btn-secondary mx-3" disabled><</a>
+    {% endif %}
+    Maisons {{ firstItemNumber }} à {{ lastItemNumber }} (sur {{totalCount}})
+    {% if next is defined %}
+        <a rel="next" href="{{ path(route, query|merge({(pageParameterName): next})) }}" class="btn btn-sm btn-secondary mx-3">></a>
+    {% else %}
+        <a class="btn btn-sm btn-secondary mx-3" disabled>></a>
+    {% endif %}
+{% endif %}

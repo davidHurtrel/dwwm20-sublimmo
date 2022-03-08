@@ -3,21 +3,29 @@
 namespace App\Controller;
 
 use App\Entity\Maison;
-use App\Form\MaisonSearchType;
 use App\Form\MaisonType;
+use App\Form\MaisonSearchType;
 use App\Repository\MaisonRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Request;
 
 class MaisonController extends AbstractController
 {
     #[Route('/maisons', name: 'maison_index')]
-    public function index(MaisonRepository $maisonRepository): Response
+    public function index(MaisonRepository $maisonRepository, EntityManagerInterface $entityManagerInterface, PaginatorInterface $paginatorInterface, Request $request): Response
     {
-        $houses = $maisonRepository->findAll();
+        // $houses = $maisonRepository->findAll();
+        
+        // avec pagination
+        $dql = "SELECT a FROM App:Maison a";
+        $query = $entityManagerInterface->createQuery($dql);
+        $houses = $paginatorInterface->paginate($query, $request->query->getInt('page', 1), 4);
+        
         return $this->render('maison/index.html.twig', [
             'maisons' => $houses,
         ]);

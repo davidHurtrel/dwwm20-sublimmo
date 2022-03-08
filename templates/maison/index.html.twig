@@ -11,6 +11,9 @@
     <main class="container-fluid p-5">
 
         <div class="row">
+            <div class="col-12 text-center my-3 font-weight-bold">
+                <p>{{ maisons.getTotalItemCount }} maisons disponibles</p>
+            </div>
             {% for maison in maisons %}
                 <div class="col-3 p-3">
                     <div class="card">
@@ -31,6 +34,9 @@
                     </div>
                 </div>
             {% endfor %}
+            <div class="col-12 text-center mt-5">
+                <p>{{ knp_pagination_render(maisons, 'bundles/KnpPaginator/Pagination/pagination.html.twig') }}</p>
+            </div>
         </div>
 
     </main>
