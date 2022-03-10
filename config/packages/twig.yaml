@@ -1,6 +1,13 @@
 twig:
     default_path: '%kernel.project_dir%/templates'
     form_themes: ['bootstrap_5_layout.html.twig']
+    globals:
+        contact_company: 'Sublimmo'
+        contact_address: '12 rue du Village'
+        contact_zip: '12345'
+        contact_city: 'Ville'
+        contact_phone: '01 23 45 67 89'
+        contact_email: 'contact@sublimmo.com'
 
 when@test:
     twig:
