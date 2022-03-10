@@ -5,7 +5,9 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     dossier_photos_maisons: '%kernel.project_dir%/public/img/maison'
+    dossier_factures: '%kernel.project_dir%/public/facture'
     app.openweather_pk: '%env(OPENWEATHER_PK)%'
+    app.stripe_sk: '%env(STRIPE_SK)%'
 
 services:
     # default configuration for services in *this* file
