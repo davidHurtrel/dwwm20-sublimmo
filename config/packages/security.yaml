@@ -39,6 +39,7 @@ security:
         # - { path: ^/register, roles: ROLE_SUPER_ADMIN }
         - { path: ^/admin/user, roles: ROLE_SUPER_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/payment, roles: ROLE_USER }
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
