@@ -46,9 +46,13 @@ class Maison
     #[ORM\OneToMany(mappedBy: 'maison', targetEntity: Comment::class, orphanRemoval: true)]
     private $comments;
 
+    #[ORM\OneToMany(mappedBy: 'item', targetEntity: InvoiceLine::class)]
+    private $invoiceLines;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->invoiceLines = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -188,6 +192,36 @@ class Maison
             // set the owning side to null (unless already changed)
             if ($comment->getMaison() === $this) {
                 $comment->setMaison(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, InvoiceLine>
+     */
+    public function getInvoiceLines(): Collection
+    {
+        return $this->invoiceLines;
+    }
+
+    public function addInvoiceLine(InvoiceLine $invoiceLine): self
+    {
+        if (!$this->invoiceLines->contains($invoiceLine)) {
+            $this->invoiceLines[] = $invoiceLine;
+            $invoiceLine->setItem($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInvoiceLine(InvoiceLine $invoiceLine): self
+    {
+        if ($this->invoiceLines->removeElement($invoiceLine)) {
+            // set the owning side to null (unless already changed)
+            if ($invoiceLine->getItem() === $this) {
+                $invoiceLine->setItem(null);
             }
         }
 

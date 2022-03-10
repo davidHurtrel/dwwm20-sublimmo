@@ -369,6 +369,23 @@ composer require symfony/twig-pack
     - 500 : erreur interne
     - 503 : service indisponible
 
+## GÉNÉRER UN PDF
+
+- installer le bundle Dompdf :
+```
+composer require dompdf/dompdf
+```
+- passer le HTML à Dompdf :
+```PHP
+use Dompdf\Dompdf;
+$dompdf = new Dompdf(); // instantier la class
+$dompdf->loadHtml('CODE_HTML'); // donner le code HTML à Dompdf (peut être du twig avec renderView())
+$dompdf->setPaper('A4', 'landscape'); // optionnel : donner la taille de papier et l'orientation
+$dompdf->render(); // rendre le HTML en tant que PDF
+$dompdf->stream('NOM_DU_DOCUMENT_A_GENERER'); // affiche le PDF dans le navigateur et lui donne un nom
+```
+- si le HTML est généré à partir de twig (avec renderView()), créer la vue (ex.: templates/payment/invoice.html.twig)
+
 ## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
 
 - composer.json :
