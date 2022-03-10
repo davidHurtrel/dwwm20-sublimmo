@@ -1,4 +1,3 @@
-
 {% if pageCount > 1 %}
     {% if previous is defined %}
         <a rel="prev" href="{{ path(route, query|merge({(pageParameterName): previous})) }}" class="btn btn-sm btn-secondary mx-3"><</a>
