@@ -68,7 +68,7 @@ class PaymentController extends AbstractController
     // }
 
     #[Route('/payment/success', name: 'payment_success')]
-    public function success(Request $request, InvoiceRepository $invoiceRepository, CartService $cartService, ManagerRegistry $managerRegistry, MaisonRepository $maisonRepository): Response
+    public function success(Request $request, InvoiceRepository $invoiceRepository, CartService $cartService, ManagerRegistry $managerRegistry): Response
     {
         if ($request->headers->get('referer') !== 'https://checkout.stripe.com/') {
             return $this->redirectToRoute('cart_index');
@@ -124,7 +124,7 @@ class PaymentController extends AbstractController
     }
 
     #[Route('invoice/download/{id}', name: 'invoice_download')]
-    public function downloadInvoice(InvoiceRepository $invoiceRepository, int $id, InvoiceLineRepository $invoiceLineRepository): Response
+    public function downloadInvoice(InvoiceRepository $invoiceRepository, int $id): Response
     {
         $invoice = $invoiceRepository->find($id);
 
