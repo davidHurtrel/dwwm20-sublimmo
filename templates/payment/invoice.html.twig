@@ -7,7 +7,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>SUBLIMMO - facture</title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
         <style>
             header p{margin:0;}#client{position:absolute;top:0;right:0;}h1{font-size:2em;margin-top:2em;}table{width: 100%;}table img{width:100px;}thead,tfoot{background-color:#555;color:#FFF;font-weight:bold;}td{height:45px;}thead th,tfoot td{height:35px;}footer{position:fixed;bottom:0;width:100%;text-align:center;}footer p{margin:0;font-size:0.75em;}.text-right{text-align:right;}.text-center{text-align:center;}
         </style>
@@ -27,13 +26,13 @@
             {# <div class="col-xs-4 text-center">
                 <img src="{{ asset('img/logo.png') }}" alt="logo Sublimmo" class="w-50">
             </div> #}
-            <div class="col-xs-4 text-right" id="client">
+            <div id="client">
                 <h3>Client :</h3>
-                <p>{{ user.firstName }} {{ user.lastName|upper }}</p>
+                <p>{{ invoice.user.firstName }} {{ invoice.user.lastName|upper }}</p>
                 <p>n° voie</p>
                 <p>complément d'addresse</p>
                 <p>code postal ville</p>
-                <p>{{ user.email }}</p>
+                <p>{{ invoice.user.email }}</p>
             </div>
         </header>
     
@@ -49,7 +48,7 @@
                     </tr>
                 </head>
                 <tbody>
-                    {% for line in cart %}
+                    {% for line in invoice.invoiceLines %}
                         <tr>
                             <td>{# <img src="{{ asset('img/maison/' ~ line.product.img1) }}" alt="image {{ line.product.title }}">  #}{{ line.item.title }}</td>
                             <td class="text-right">{{ line.item.price|number_format(2, ',', ' ') }} €</td>
@@ -59,9 +58,9 @@
                     {% endfor %}
                 </tbody>
                 <tfoot>
-                    <tr class="table-secondary text-right text-uppercase fw-bold active">
+                    <tr class="text-right">
                         <td colspan="3">TOTAL :</td>
-                        <td>{{ total|number_format(2, ',', ' ') }} €</td>
+                        <td>{{ invoice.amount|number_format(2, ',', ' ') }} €</td>
                     </tr>
                 </tfoot>
             </table>

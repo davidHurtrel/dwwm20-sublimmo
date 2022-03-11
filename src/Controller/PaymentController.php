@@ -136,19 +136,13 @@ class PaymentController extends AbstractController
         // génère une facture au format pdf
         $dompdf = new Dompdf(); // instantier la classe
         $dompdf->loadHtml($this->renderView('payment/invoice.html.twig', [
-            'invoice' => $invoice,
-            'cart' => $invoiceLineRepository->findBy(['invoice' => $id]),
-            'total' => $invoice->getAmount(),
-            'user' => $invoice->getUser()
+            'invoice' => $invoice
         ])); // donner le code HTML à Dompdf
         $dompdf->setPaper('A4', 'portrait'); // optionnel : donner la taille de papier et l'orientation
         $dompdf->render(); // rendre le HTML en tant que PDF
         $dompdf->stream($invoice->getNumber()); // affiche le PDF dans le navigateur
-        return $this->render('payment/invoice.html.twig', [
-            'invoice' => $invoice,
-            'cart' => $invoiceLineRepository->findBy(['invoice' => $id]),
-            'total' => $invoice->getAmount(),
-            'user' => $invoice->getUser()
+        return $this->render('payment/success.html.twig', [
+            'invoiceId' => $invoice->getId()
         ]);
     }
 }
