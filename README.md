@@ -401,11 +401,11 @@ $dompdf->stream('NOM_DU_DOCUMENT_A_GENERER'); // affiche le PDF dans le navigate
 
 ### SSH
 
-- dans un nouveau teerminal, se connecter au serveur :
+- dans un nouveau terminal, se connecter au serveur :
 ```
 ssh le_lien_ssh_donne_avec_l_hébergement
 ```
-- isntaller composer à la racine de votre hébergement : se rendre sur getcomposer.org/download et exécuter les 4 commandes
+- installer composer à la racine de votre hébergement : se rendre sur getcomposer.org/download et exécuter les 4 commandes
 - se rendre dans le dossier qui contiendra l'application :
 ```
 cd le/chemin/du/dossier
@@ -427,9 +427,9 @@ git pull origin main
 ```
 php ~/composer.phar install
 ```
-- la première fois, mettre à jour le schéma de la base de données (pour le champs roles en json) :
+- si MySQL 5.6, la première fois, mettre à jour le schéma de la base de données (pour le champs roles en json) :
 ```
-php bin/console doctrine:schema;update --force
+php bin/console doctrine:schema:update --force
 ```
 - mise à jour de la base de données :
 ```
@@ -439,62 +439,3 @@ php bin/console doctrine:migrations:migrate
 ```
 php bin/console cache:clear
 ```
-
-## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
-
-- composer.json :
-    - remplacer 6.0 par 5.4
-    - supprimer symfony/doctrine-messenger
-    - supprimer symfony/messenger
-- supprimer les dossiers var et vendor
-- supprimer config/packages/messenger.yaml
-- .env :
-    - supprimer symfony/webapp-meta
-    - supprimer symfony/messenger
-- ajouter les méthodes suivantes dans src/Entity/User.php :
-```PHP
-/**
- * A visual identifier that represents this user.
- *
- * @see UserInterface
- */
-public function getUsername(): string
-{
-    return (string) $this->email;
-}
-```
-```PHP
-/**
-* Returning a salt is only needed, if you are not using a modern
-* hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
-*
-* @see UserInterface
-*/
-public function getSalt(): ?string
-{
-    return null;
-}
-```
-- composer update
-
-## COMMANDES IMPORTANTES
-
-- vider le cache :
-```
-php bin/console cache:clear
-```
-- envoyer les messages (mails, ...) :
-```
-php bin/console messenger:consume async
-```
-
-## RESTE À FAIRE
-
-- pages d'erreur
-- embedding services
-- pagination
-- utiliser CartService partout dans PaymentController
-
-## PISTES
-
-- installer verify-email-bundle avant registration-form
