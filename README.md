@@ -386,6 +386,60 @@ $dompdf->stream('NOM_DU_DOCUMENT_A_GENERER'); // affiche le PDF dans le navigate
 ```
 - si le HTML est généré à partir de twig (avec renderView()), créer la vue (ex.: templates/payment/invoice.html.twig)
 
+## HÉBERGEMENT
+
+- vérifier si PHP 8 et MySQL 5.7
+- si possible accès SSH
+
+### FTP
+
+- sur le site en local => passer en prod et vioder le cache
+- envoyer les fichiers via FileZilla (ou cPanel) dans le dossier www (ou htdocs) de l'hébergeur
+- modifier les infos dans le .env hébergé (accès base de données, ...)
+- importer la base de données (si MySQL 5.6 => changer roles pour l'entité User en text et non json puis migration)
+- tester
+
+### SSH
+
+- dans un nouveau teerminal, se connecter au serveur :
+```
+ssh le_lien_ssh_donne_avec_l_hébergement
+```
+- isntaller composer à la racine de votre hébergement : se rendre sur getcomposer.org/download et exécuter les 4 commandes
+- se rendre dans le dossier qui contiendra l'application :
+```
+cd le/chemin/du/dossier
+```
+- initialiser un dépôt git local (sur le serveur, la première fois uniquement) :
+```
+git init
+```
+- lier le dépôt local au dépôt distant (la première fois uniquement) :
+```
+git remote add origin lien_du_depot_github
+```
+- télécharger le contenu du dépôt GitHub :
+```
+git pull origin main
+```
+- vérifier/modifier le .env prod, BDD, ...)
+- installer les dépendances :
+```
+php ~/composer.phar install
+```
+- la première fois, mettre à jour le schéma de la base de données (pour le champs roles en json) :
+```
+php bin/console doctrine:schema;update --force
+```
+- mise à jour de la base de données :
+```
+php bin/console doctrine:migrations:migrate
+```
+- vider le cache :
+```
+php bin/console cache:clear
+```
+
 ## PASSER DE SYMFONY 6.0 À SYMFONY 5.4
 
 - composer.json :
