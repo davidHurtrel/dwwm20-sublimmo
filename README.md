@@ -405,10 +405,10 @@ $dompdf->stream('NOM_DU_DOCUMENT_A_GENERER'); // affiche le PDF dans le navigate
 ```
 ssh le_lien_ssh_donne_avec_l_hébergement
 ```
-- installer composer à la racine de votre hébergement : se rendre sur getcomposer.org/download et exécuter les 4 commandes
+- installer composer à la racine de votre hébergement : se rendre sur getcomposer.org/download et exécuter les 4 commandes (si nécessaire)
 - se rendre dans le dossier qui contiendra l'application :
 ```
-cd le/chemin/du/dossier
+cd le/chemin/du/dossier (ex.: cd www/projet)
 ```
 - initialiser un dépôt git local (sur le serveur, la première fois uniquement) :
 ```
@@ -422,7 +422,7 @@ git remote add origin lien_du_depot_github
 ```
 git pull origin main
 ```
-- vérifier/modifier le .env prod, BDD, ...)
+- vérifier/modifier le .env (prod, BDD, ...)
 - installer les dépendances :
 ```
 php ~/composer.phar install
