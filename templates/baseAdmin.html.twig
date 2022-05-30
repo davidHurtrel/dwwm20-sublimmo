@@ -44,7 +44,7 @@
                             <li class="py-2"><a href="{{ path('comment_admin_index') }}" title="commentaires"><i class="fas fa-comment"></i></a></li>
                             <li class="py-2"><a href="#" title="commerciaux"><i class="fas fa-briefcase"></i></a></li>
                             {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                <li class="py-2"><a href="#" title="utilisateurs"><i class="fas fa-users"></i></a></li>
+                                <li class="py-2"><a href="{{ path('admin_user_index') }}" title="utilisateurs"><i class="fas fa-users"></i></a></li>
                             {% endif %}
                             <li class="py-2"><a href="{{ path('home') }}" title="accueil site"><i class="fas fa-home"></i></a></li>
                             <li class="py-2"><a href="{{ path('app_logout') }}" title="déconnexion"><i class="fas fa-sign-out-alt"></i></a></li>

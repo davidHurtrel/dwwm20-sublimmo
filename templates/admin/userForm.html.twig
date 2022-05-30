@@ -1,0 +1,45 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}utilisateur{% endblock %}
+
+{% block body %}
+
+    {# {{ form(userForm) }} #}
+
+    {{ form_start(userForm) }}
+
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(userForm.firstName, {'label': 'Prénom'}) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(userForm.lastName, {'label': 'Nom'})}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(userForm.email, {'label': 'Email'}) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(userForm.roles, {'label': 'Rôle(s)'})}}
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                {{ form_row(userForm.password, {'label': 'Mot de passe'}) }}
+            </div>
+            <div class="col-6">
+                {{ form_row(userForm.isVerified, {'label': 'Vérifié'})}}
+            </div>
+        </div>
+
+        <div class="col-12 d-flex justify-content-end">
+            <a href="{{ path('admin_user_index') }}" class="btn btn-danger m-3">Annuler</a>
+            <button class="btn btn-success m-3">Créer</button>
+        </div>
+        
+    {{ form_end(userForm) }}
+
+{% endblock %}

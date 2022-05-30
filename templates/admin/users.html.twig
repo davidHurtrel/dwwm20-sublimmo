@@ -1,0 +1,41 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}utilisateurs{% endblock %}
+
+{% block body %}
+
+    <h1 class="pb-5">Liste des utilisateurs</h1>
+
+    <table class="table text-center table-hover table-sm">
+        <thead>
+            <tr>
+                <th>N°</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle(s)</th>
+                <th>Vérifié</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users|reverse %}
+                <tr>
+                    <td class="align-middle">{{ loop.revindex }}</td>
+                    <td class="align-middle">{{ user.firstName|capitalize ~ ' ' ~ user.lastName|upper }}</td>
+                    <td class="align-middle">{{ user.email }}</td>
+                    <td class="align-middle">{{ user.roles|join(' + ') }}</td>
+                    <td class="align-middle">{{ user.isVerified }}</td>
+                    <td class="align-middle">
+                        <a href="#" class="text-primary"><i class="fas fa-pen-square"></i></a>
+                        <a href="#" class="text-danger"><i class="fas fa-trash-alt"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end my-5">
+        <a href="{{ path('admin_user_create') }}" class="btn btn-success">Ajouter un utilisateur</a>
+    </div>
+
+{% endblock %}
